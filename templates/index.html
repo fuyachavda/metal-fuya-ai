@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Color AI Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            background: #ffd700;
+            color: #333;
+            padding: 20px;
+            margin: 0 0 30px;
+        }
+        form {
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .preview {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .preview img {
+            max-width: 300px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .preview label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jewelry Color Detection & Conversion Tool</h1>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="file" required><br>
+        <button type="submit">Upload & Convert</button>
+    </form>
+
+    {% if original_img and result_img %}
+    <div class="preview">
+        <div>
+            <label>Converted Image</label>
+            <img src="data:image/jpeg;base64,{{ result_img }}">
+        </div>
+        <div>
+            <label>Original Image</label>
+            <img src="data:image/jpeg;base64,{{ original_img }}">
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
